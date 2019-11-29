@@ -1,0 +1,18 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="kotlin">
+    <words>
+      <w>antrun</w>
+      <w>arturbosch</w><!-- for detekt -->
+      <w>bintray</w><!-- for jcenter -->
+      <w>detekt</w>
+      <w>dokka</w>
+      <w>editorconfig</w>
+      <w>intelli</w><!-- "IntelliJ"-->
+      <w>jcenter</w>
+      <w>ktlint</w>
+      <w>pinterest</w><!-- for ktlint -->
+      <w>pojo</w>
+      <w>xjsr</w><!-- for kotlin-maven-plugin -->
+    </words>
+  </dictionary>
+</component>

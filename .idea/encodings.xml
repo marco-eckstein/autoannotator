@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-api/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-cli" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-cli/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-core/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-maven-plugin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/autoannotator-maven-plugin/src/main/kotlin" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.marcoeckstein</groupId>
+    <artifactId>autoannotator</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>AutoAnnotator</name>
+    <description>
+        A metaprogramming tool for automatically annotating types with validation constraints,
+        JPA annotations and arbitrary other annotations.
+    </description>
+    <url>https://github.com/marco-eckstein/autoannotator</url>
+    <inceptionYear>2019</inceptionYear>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>marcoeckstein.com</id>
+            <name>Marco Eckstein</name>
+            <email>marco.eckstein@gmx.de</email>
+            <url>https://www.marcoeckstein.com</url>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/marco-eckstein/autoannotator/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:https://github.com/marco-eckstein/autoannotator</connection>
+        <developerConnection>scm:git:https://github.com/marco-eckstein/autoannotator</developerConnection>
+        <url>https://github.com/marco-eckstein/autoannotator</url>
+    </scm>
+
+    <modules>
+        <module>autoannotator-api</module>
+        <module>autoannotator-cli</module>
+        <module>autoannotator-core</module>
+        <module>autoannotator-maven-plugin</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <java.version>1.8</java.version>
+        <jdk.version>8</jdk.version>
+        <kotlin.version>1.3.61</kotlin.version>
+        <dokka.version>0.10.0</dokka.version>
+        <slf4j.version>1.7.29</slf4j.version>
+        <mainClass>com.marcoeckstein.autoannotator.cli.Main</mainClass>
+        <!--
+        ktlint.disabled_rules:
+            filename:
+                Caught more precisely (with desired exceptions) with detekt.
+            import-ordering:
+                ktlint's order is not supported (yet) by IntelliJ.
+                See:
+                - https://github.com/pinterest/ktlint/issues/527
+                - https://youtrack.jetbrains.com/issue/KT-10974
+            no-wildcard-imports:
+                Not desired. We want them for Java statics and Enum members.
+            experimental:annotation:
+                Not desired.
+            experimental:multiline-if-else:
+                Not desired.
+        -->
+        <ktlint.disabled_rules>
+            filename,
+            import-ordering,
+            no-wildcard-imports,
+            experimental:annotation,
+            experimental:indent,
+            experimental:multiline-if-else
+        </ktlint.disabled_rules>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <!--suppress KotlinMavenPluginPhase -->
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.14.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-assertions</artifactId>
+            <version>3.4.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-annotations</artifactId>
+                <version>3.5.6-Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.core</artifactId>
+                <version>2.7.5</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <sourceDirectory>${sourceDirectory}</sourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>plugins</id>
+            <activation>
+                <!-- If project is a module -->
+                <file>
+                    <missing>${basedir}/detekt-config.yml</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-plugin</artifactId>
+                        <version>${kotlin.version}</version>
+                        <configuration>
+                            <args>
+                                <arg>-Xjsr305=strict</arg>
+                                <arg>-progressive</arg>
+                                <arg>-jvm-target</arg>
+                                <arg>${java.version}</arg>
+                            </args>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>compile</id>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirs>
+                                        <sourceDir>${project.build.sourceDirectory}</sourceDir>
+                                    </sourceDirs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-compile</id>
+                                <goals>
+                                    <goal>test-compile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirs>
+                                        <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                                        <sourceDir>${project.basedir}/src/test/java</sourceDir>
+                                    </sourceDirs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>ktlint</id>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <target name="ktlint">
+                                        <java taskname="ktlint"
+                                              dir="${basedir}"
+                                              fork="true"
+                                              failonerror="true"
+                                              classname="com.pinterest.ktlint.Main"
+                                              classpathref="maven.plugin.classpath">
+                                            <arg value="--experimental"/>
+                                            <arg value="--relative"/>
+                                            <arg value="--verbose"/>
+                                            <arg value="--disabled_rules=${ktlint.disabled_rules}"/>
+                                            <arg value="--editorconfig=${project.basedir}/../.editorconfig"/>
+                                        </java>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>detekt</id>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <target name="detekt">
+                                        <java taskname="detekt"
+                                              dir="${basedir}"
+                                              fork="true"
+                                              failonerror="true"
+                                              classname="io.gitlab.arturbosch.detekt.cli.Main"
+                                              classpathref="maven.plugin.classpath">
+                                            <arg value="--build-upon-default-config"/>
+                                            <arg value="--config"/>
+                                            <arg value="${project.basedir}/../detekt-config.yml"/>
+                                        </java>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.pinterest</groupId>
+                                <artifactId>ktlint</artifactId>
+                                <version>0.35.0</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>io.gitlab.arturbosch.detekt</groupId>
+                                <artifactId>detekt-cli</artifactId>
+                                <version>1.1.0</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <executions>
+                            <!-- Replacing default-compile as it is treated specially by maven -->
+                            <execution>
+                                <id>default-compile</id>
+                                <phase>none</phase>
+                            </execution>
+                            <!-- Replacing default-testCompile as it is treated specially by maven -->
+                            <execution>
+                                <id>default-testCompile</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>java-compile</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>java-test-compile</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M4</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>package code</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>package sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jetbrains.dokka</groupId>
+                        <artifactId>dokka-maven-plugin</artifactId>
+                        <version>${dokka.version}</version>
+                        <executions>
+                            <execution>
+                                <id>create and package docs</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>dokka</goal>
+                                    <goal>javadoc</goal>
+                                    <goal>javadocJar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- <samples>-->
+                            <!--     <dir>${project.basedir}/src/test/</dir>-->
+                            <!-- </samples>-->
+                            <jdkVersion>${jdk.version}</jdkVersion>
+                            <reportUndocumented>false</reportUndocumented>
+                            <!-- <sourceLinks>-->
+                            <!--     <link>-->
+                            <!--         <path>src</path>-->
+                            <!--         <url>https://github.com/marco-eckstein/autoannotator</url>-->
+                            <!--         <lineSuffix>#L</lineSuffix>-->
+                            <!--     </link>-->
+                            <!-- </sourceLinks>-->
+                            <externalDocumentationLinks>
+                                <link>
+                                    <url>https://kotlinlang.org/api/latest/jvm/stdlib/index.html</url>
+                                </link>
+                                <link>
+                                    <url>https://docs.oracle.com/javase/8/docs/api/</url>
+                                </link>
+                                <link>
+                                    <url>https://javaee.github.io/javaee-spec/javadocs/</url>
+                                </link>
+                            </externalDocumentationLinks>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+            <!-- Required for dokka-maven-plugin -->
+        </pluginRepository>
+    </pluginRepositories>
+</project>

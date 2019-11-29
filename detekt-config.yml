@@ -1,0 +1,9 @@
+complexity:
+  ComplexMethod:
+    ignoreSimpleWhenEntries: true
+naming:
+  MatchingDeclarationName:
+    excludes: "**/*Annotations.kt,**/*Exceptions.kt"
+style:
+  MagicNumber:
+    active: false
