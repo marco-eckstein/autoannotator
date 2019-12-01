@@ -24,7 +24,7 @@ class AutoAnnotator(
         val allClassesWithOutDirs = outputDirectoriesToAnnotate.flatMap { outDir ->
             outDir.walkTopDown()
                 .filter { it.isFile && it.extension == "class" }
-                .map { file -> classPool.makeClass(FileInputStream(file)) to outDir }
+                .map { classPool.makeClass(FileInputStream(it)) to outDir }
                 .toList()
         }.toMap()
         if (allClassesWithOutDirs.isEmpty())
