@@ -10,7 +10,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileInputStream
-import java.nio.file.Paths
 
 class AutoAnnotator(
     private val outputDirectoriesToAnnotate: Collection<File>,
@@ -25,8 +24,7 @@ class AutoAnnotator(
         val allClassesWithOutDirs = outputDirectoriesToAnnotate.flatMap { outDir ->
             outDir.walkTopDown()
                 .filter { it.isFile && it.extension == "class" }
-                .map { file -> classPool.makeClass(FileInputStream(file)) to file }
-                .map { (clazz, file) -> clazz to getOutputDirectory(clazz, file) }
+                .map { file -> classPool.makeClass(FileInputStream(file)) to outDir }
                 .toList()
         }.toMap()
         if (allClassesWithOutDirs.isEmpty())
@@ -40,17 +38,6 @@ class AutoAnnotator(
         checkAndRemember(config)
         PackageAnnotator(allClasses, config.classFilter, config.classOptions).annotate()
         allClassesWithOutDirs.forEach { (clazz, rootDir) -> clazz.writeFile(rootDir.absolutePath) }
-    }
-
-    private fun getOutputDirectory(clazz: CtClass, clazzFile: File): File {
-        val fullPath = Paths.get(clazzFile.absolutePath)
-        val partsCount = clazz.packageName.count { it == '.' } + 2
-        return fullPath.subpath(
-            Paths.get("").toAbsolutePath().nameCount,
-            fullPath.nameCount - partsCount
-        )
-            .toAbsolutePath()
-            .toFile()
     }
 
     private fun getConfig(allClasses: Iterable<CtClass>): AutoAnnotatorConfig {
