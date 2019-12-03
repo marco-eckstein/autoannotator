@@ -27,7 +27,7 @@ import java.time.ZonedDateTime
 import javax.persistence.Entity
 
 @Entity
-internal class AutoAnnotatedPojo(
+class AutoAnnotatedPojo(
     val nonNullString: String,
     val nullableString: String?,
     val zonedDateTime: ZonedDateTime
@@ -66,7 +66,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
 
 @Entity
-internal class AutoAnnotatedPojo(
+class AutoAnnotatedPojo(
     @field:[NotNull NotBlank]
     val nonNullString: String,
 
@@ -77,12 +77,6 @@ internal class AutoAnnotatedPojo(
     val zonedDateTime: ZonedDateTime
 )
 ```
-
-`@javax.validation.constraints.NotNull` can be useful even in Kotlin, because your JPA provider may be able 
-to infer a `NOT NULL` database constraint from it. E.g., Hibernate does this by default.
-
-In Kotlin, you probably do not want blank strings because `null` is the idiomatic way of representing a 
-missing value.
 
 Java:
 
@@ -113,6 +107,12 @@ public class AutoAnnotatedPojo {
 ```
 
 For more examples, please see the tests in the `autoannotator-core` module.
+
+`@javax.validation.constraints.NotNull` can be useful even in Kotlin, because your JPA provider may be able 
+to infer a `NOT NULL` database constraint from it. E.g., Hibernate does this by default.
+
+In Kotlin, you probably do not want blank strings because `null` is the idiomatic way of representing a 
+missing value.
 
 ## Usage
 
