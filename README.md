@@ -7,7 +7,7 @@ https://github.com/marco-eckstein/autoannotator/actions?query=workflow%3A"Java+C
 [![Maven Central Status](
 https://maven-badges.herokuapp.com/maven-central/com.marcoeckstein/autoannotator/badge.svg
 )](
-https://mvnrepository.com/artifact/marco-eckstein/autoannotator
+https://mvnrepository.com/artifact/com.marcoeckstein/autoannotator
 )
 
 AutoAnnotator is a metaprogramming tool for automatically annotating types with validation constraints,
