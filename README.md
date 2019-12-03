@@ -316,10 +316,33 @@ Due to limitations of the Dokka plugin, there are some caveats:
 
 - For development, JDK 8 is required. A higher JDK version cannot be used.
   If you use Windows and have a different JDK installed, you can set environment variable `JAVA8_HOME` and 
-  run the PowerShell script `mvn-clean-install.ps1`.
+  run the PowerShell script `mvn-runner.ps1`.
 - The following warnings are to be expected:
     - `dokka-maven-plugin:0.10.0:dokka`:
       - "Can't find node by signature \`org.jetbrains.annotations.NotNull\`, referenced at..."
     - `dokka-maven-plugin:0.10.0:javadoc`:
       - "null:-1:-1: Tag @see cannot be used in inline documentation."
   
+### mvn-runner.ps1
+ 
+This interactive PowerShell script - if used with goal `deploy`-  expects you to have the following data in 
+your `<USERHOME>/.m2/settings.xml`:
+
+```xml
+<settings>
+    <servers>
+        <server>
+            <id>Sonatype Staging</id>
+            <username>USERNAME</username>
+            <password>${sonatype.password}</password>
+        </server>
+        <server>
+            <id>Sonatype Snapshots</id>
+            <username>USERNAME</username>
+            <password>${sonatype.password}</password>
+        </server>
+        ...
+    </servers>
+    ...
+</settings>
+```
