@@ -1,5 +1,15 @@
 # AutoAnnotator
 
+[![Actions Status](https://github.com/marco-eckstein/autoannotator/workflows/Java%20CI/badge.svg)](
+https://github.com/marco-eckstein/autoannotator/actions?query=workflow%3A"Java+CI"
+)
+
+[![Maven Central Status](
+https://maven-badges.herokuapp.com/maven-central/com.marcoeckstein/autoannotator/badge.svg
+)](
+https://mvnrepository.com/artifact/marco-eckstein/autoannotator
+)
+
 AutoAnnotator is a metaprogramming tool for automatically annotating types with validation constraints,
 JPA annotations and arbitrary other annotations. It is written in Kotlin but works for Java and possibly
 other JVM languages as well.
