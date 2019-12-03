@@ -136,9 +136,9 @@ implementation("com.marcoeckstein:autoannotator-api:$version")
 
 The `autoannotator-api` module has no compile time dependencies to libraries with the annotations it may use
 (depending on the configuration). It is expected that your project's classpath contains libraries with these
-annotations. E.g., if you use `javax.validation.constraints.NotNull`, your project must have a dependency to
-``javax.validation:validation-api`` or a substitute. If you have a JPA project, you probably have all
-required dependencies.
+annotations. E.g., if you use `javax.validation.constraints.NotNull` (by default you do), your project must 
+have a dependency to ``javax.validation:validation-api`` or a substitute.
+If you have a JPA project, you probably have all required dependencies.
 
 ### 2. Configuration
 
@@ -189,7 +189,7 @@ public class Config {
     @AutoAnnotatorConfigSource
     public static AutoAnnotatorConfig get() {
         return new AutoAnnotatorConfig(
-            new ClassFilter(packageName),
+            new ClassFilter("mypackage.domain.model"),
             new ClassOptions(
                 ImmutableMap.of(
                     ZonedDateTime.class.getName(),
@@ -208,7 +208,8 @@ public class Config {
 
 ### 3. Build lifecycle
 
-AutoAnnotator needs to run after your project has compiled.
+AutoAnnotator needs to run after your project's main sources have compiled.
+Depending on the configuration, it may need to run after your project's test sources have compiled as well.
 
 #### Maven
 
