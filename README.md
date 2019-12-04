@@ -11,8 +11,8 @@ https://mvnrepository.com/artifact/com.marcoeckstein/autoannotator
 )
 
 AutoAnnotator is a metaprogramming tool for automatically annotating types with validation constraints,
-JPA annotations and arbitrary other annotations. It is written in Kotlin but works for Java and possibly
-other JVM languages as well.
+JPA annotations and arbitrary other annotations. It is written in Kotlin but works for Java and probably
+all other JVM languages as well.
 
 ## Purpose
 
@@ -106,7 +106,9 @@ public class AutoAnnotatedPojo {
 }
 ```
 
-For more examples, please see the tests in the `autoannotator-core` module.
+For more examples, please see the tests in the
+[`autoannotator-core`](https://github.com/marco-eckstein/autoannotator/tree/master/autoannotator-core/src/test)
+module.
 
 `@javax.validation.constraints.NotNull` can be useful even in Kotlin, because your JPA provider may be able 
 to infer a `NOT NULL` database constraint from it. E.g., Hibernate does this by default.
@@ -176,6 +178,8 @@ fun get() = AutoAnnotatorConfig(
 Java:
 
 ```java
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.marcoeckstein.autoannotator.api.AnnotationInfo;
 import com.marcoeckstein.autoannotator.api.AutoAnnotatorConfig;
 import com.marcoeckstein.autoannotator.api.AutoAnnotatorConfigSource;
@@ -205,6 +209,9 @@ public class Config {
     }
 }
 ```
+
+The configuration classes have rich documentation, so you can easily explore all options by using your
+IDE's autocompletion and integrated documentation features.
 
 ### 3. Build lifecycle
 
@@ -337,7 +344,7 @@ Due to limitations of the Dokka plugin, there are some caveats:
 ### mvn-runner.ps1
  
 This interactive PowerShell script - if used with goal `deploy`-  expects you to have the following data in 
-your `<USERHOME>/.m2/settings.xml`:
+your `%UserProfile%\.m2\settings.xml`:
 
 ```xml
 <settings>
