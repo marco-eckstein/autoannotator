@@ -110,10 +110,10 @@ For more examples, please see the tests in the
 [`autoannotator-core`](https://github.com/marco-eckstein/autoannotator/tree/master/autoannotator-core/src/test)
 module.
 
-`@javax.validation.constraints.NotNull` can be useful even in Kotlin, because your JPA provider may be able 
+`@javax.validation.constraints.NotNull` can be useful even in Kotlin, because your JPA provider may be able
 to infer a `NOT NULL` database constraint from it. E.g., Hibernate does this by default.
 
-In Kotlin, you probably do not want blank strings because `null` is the idiomatic way of representing a 
+In Kotlin, you probably do not want blank strings because `null` is the idiomatic way of representing a
 missing value.
 
 ## Usage
@@ -138,7 +138,7 @@ implementation("com.marcoeckstein:autoannotator-api:$version")
 
 The `autoannotator-api` module has no compile time dependencies to libraries with the annotations it may use
 (depending on the configuration). It is expected that your project's classpath contains libraries with these
-annotations. E.g., if you use `javax.validation.constraints.NotNull` (by default you do), your project must 
+annotations. E.g., if you use `javax.validation.constraints.NotNull` (by default you do), your project must
 have a dependency to ``javax.validation:validation-api`` or a substitute.
 If you have a JPA project, you probably have all required dependencies.
 
@@ -166,7 +166,7 @@ fun get() = AutoAnnotatorConfig(
         annotationsByFieldType = mapOf(
             ZonedDateTime::class.qualifiedName!! to setOf(
                 AnnotationInfo(
-                    clazz = Column::class, 
+                    clazz = Column::class,
                     members = mapOf(Column::columnDefinition to "timestamp with time zone")
                 )
             )
@@ -269,8 +269,8 @@ right-click the plugin's goal and check "Execute After Build".
 #### CLI (Command-line interface)
 
 If you do not use Maven, you can use the `autoannotator-cli` module at
-`"com.marcoeckstein:autoannotator-api:$version"`. The main class is `com.marcoeckstein.autoannotator.cli.Main`. 
-Logging is configured via 
+`"com.marcoeckstein:autoannotator-api:$version"`. The main class is `com.marcoeckstein.autoannotator.cli.Main`.
+Logging is configured via
 [`org.slf4j.simpleLogger.*` properties](http://www.slf4j.org/api/org/slf4j/impl/SimpleLogger.html).
 For options documentation, call the CLI with `--help`.
 
@@ -280,14 +280,14 @@ The Java process running the CLI needs a classpath that includes:
 
 - The `autoannotator-cli` jar-with-dependencies (aka "fat JAR")
 - Your project's classpath, or at least:
-    - All classes you want to annotate
-    - All types of fields in those classes (even if not annotated)
-    - All annotations you want to add or update
-    - The class with the `@AutoAnnotatorConfigSource` function
-    - All classes used in the `@AutoAnnotatorConfigSource` function\
-      I.e., writing the string `"mypackage.MyClass"` inside that function generally requires fewer classes than
-      the expressions `mypackage.MyClass::class.qualifiedName!!` (Kotlin) 
-      or `mypackage.MyClass.class.getName()` (Java).
+  - All classes you want to annotate
+  - All types of fields in those classes (even if not annotated)
+  - All annotations you want to add or update
+  - The class with the `@AutoAnnotatorConfigSource` function
+  - All classes used in the `@AutoAnnotatorConfigSource` function\
+    I.e., writing the string `"mypackage.MyClass"` inside that function generally requires fewer classes than
+    the expressions `mypackage.MyClass::class.qualifiedName!!` (Kotlin)
+    or `mypackage.MyClass.class.getName()` (Java).
 
 If you wanted to use `autoannotator-cli` in Maven, you could do this:
 
@@ -333,17 +333,17 @@ If you wanted to use `autoannotator-cli` in Maven, you could do this:
 Due to limitations of the Dokka plugin, there are some caveats:
 
 - For development, JDK 8 is required. A higher JDK version cannot be used.
-  If you use Windows and have a different JDK installed, you can set environment variable `JAVA8_HOME` and 
+  If you use Windows and have a different JDK installed, you can set environment variable `JAVA8_HOME` and
   run the PowerShell script `mvn-runner.ps1`.
 - The following warnings are to be expected:
-    - `dokka-maven-plugin:0.10.0:dokka`:
-      - "Can't find node by signature \`org.jetbrains.annotations.NotNull\`, referenced at..."
-    - `dokka-maven-plugin:0.10.0:javadoc`:
-      - "null:-1:-1: Tag @see cannot be used in inline documentation."
+  - `dokka-maven-plugin:0.10.0:dokka`:
+    - "Can't find node by signature \`org.jetbrains.annotations.NotNull\`, referenced at..."
+  - `dokka-maven-plugin:0.10.0:javadoc`:
+    - "null:-1:-1: Tag @see cannot be used in inline documentation."
   
 ### mvn-runner.ps1
- 
-This interactive PowerShell script - if used with goal `deploy`-  expects you to have the following data in 
+
+This interactive PowerShell script - if used with goal `deploy`-  expects you to have the following data in
 your `%UserProfile%\.m2\settings.xml`:
 
 ```xml
