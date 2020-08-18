@@ -8,7 +8,7 @@
     <groupId>com.marcoeckstein</groupId>
     <artifactId>autoannotator</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>AutoAnnotator</name>
     <description>
         A metaprogramming tool for automatically annotating types with validation constraints,
