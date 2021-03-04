@@ -4,6 +4,7 @@
       <w>antrun</w>
       <w>arturbosch</w><!-- for detekt -->
       <w>bintray</w><!-- for jcenter -->
+      <w>clikt</w>
       <w>cors</w>
       <w>ctor</w>
       <w>datasource</w>
@@ -16,6 +17,7 @@
       <w>javassist</w>
       <w>jcenter</w>
       <w>jdbc</w>
+      <w>jetbrains</w>
       <w>jsoup</w>
       <w>ktlint</w>
       <w>liquibase</w>
