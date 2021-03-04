@@ -14,20 +14,20 @@
       <w>editorconfig</w>
       <w>intelli</w><!-- "IntelliJ"-->
       <w>javassist</w>
-      <w>jdbc</w>
       <w>jcenter</w>
+      <w>jdbc</w>
       <w>jsoup</w>
       <w>ktlint</w>
       <w>liquibase</w>
       <w>nullable</w>
       <w>pinterest</w><!-- for ktlint -->
+      <w>pojo</w>
       <w>postgresql</w>
       <w>psql</w>
-      <w>pojo</w>
       <w>regexes</w>
       <w>sonarsource</w>
-      <w>springframework</w>
       <w>sparql</w>
+      <w>springframework</w>
       <w>tbody</w>
       <w>thead</w>
       <w>xjsr</w><!-- for kotlin-maven-plugin -->
