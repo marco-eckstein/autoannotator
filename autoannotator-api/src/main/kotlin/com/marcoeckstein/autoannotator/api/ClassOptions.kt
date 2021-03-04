@@ -4,9 +4,9 @@ import com.marcoeckstein.autoannotator.api.ClassOptions.Companion.DefaultNonNull
 import com.marcoeckstein.autoannotator.api.ClassOptions.Companion.DefaultNullableAnnotations
 import com.marcoeckstein.autoannotator.api.ClassOptions.JpaAnnotations
 import com.marcoeckstein.autoannotator.api.ClassOptions.JpaAnnotations.Companion
-    .DefaultAnnotationsThatPrecludeColumnAnnotation
+.DefaultAnnotationsThatPrecludeColumnAnnotation
 import com.marcoeckstein.autoannotator.api.ClassOptions.JpaAnnotations.Companion
-    .DefaultJpaClassAnnotations
+.DefaultJpaClassAnnotations
 import com.marcoeckstein.autoannotator.api.ClassOptions.ValidationAnnotations
 
 /**
@@ -168,6 +168,7 @@ data class ClassOptions @JvmOverloads constructor(
     }
 
     companion object {
+
         /**
          * - `org.jetbrains.annotations.NotNull`
          * - `javax.annotation.NonNull`

@@ -70,6 +70,7 @@ class AutoAnnotator(
     }
 
     private companion object {
+
         val CtMethod.isConfigSource
             get() = hasAnnotation(AutoAnnotatorConfigSource::class.qualifiedName!!) &&
                 (this.modifiers and AccessFlag.STATIC != 0)
