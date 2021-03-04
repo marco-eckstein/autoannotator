@@ -36,6 +36,8 @@
           <option value="java.util.concurrent.atomic.AtomicLong.getAcquire" />
           <option value="java.util.concurrent.atomic.AtomicLong.getOpaque" />
           <option value="java.util.concurrent.atomic.AtomicLong.getPlain" />
+          <option value="com.binance.api.client.BinanceApiRestClient.getExchangeInfo" />
+          <option value="com.binance.api.client.BinanceApiRestClient.getAccount" />
           <option value="org.eclipse.rdf4j.repository.sparql.SPARQLRepository.getConnection" />
         </list>
       </option>
