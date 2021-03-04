@@ -1,17 +1,35 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="kotlin">
+  <dictionary name="software">
     <words>
       <w>antrun</w>
       <w>arturbosch</w><!-- for detekt -->
       <w>bintray</w><!-- for jcenter -->
+      <w>cors</w>
+      <w>ctor</w>
+      <w>datasource</w>
+      <w>deauthenticate</w>
       <w>detekt</w>
       <w>dokka</w>
+      <w>dtype</w>
       <w>editorconfig</w>
       <w>intelli</w><!-- "IntelliJ"-->
+      <w>javassist</w>
+      <w>jdbc</w>
       <w>jcenter</w>
+      <w>jsoup</w>
       <w>ktlint</w>
+      <w>liquibase</w>
+      <w>nullable</w>
       <w>pinterest</w><!-- for ktlint -->
+      <w>postgresql</w>
+      <w>psql</w>
       <w>pojo</w>
+      <w>regexes</w>
+      <w>sonarsource</w>
+      <w>springframework</w>
+      <w>sparql</w>
+      <w>tbody</w>
+      <w>thead</w>
       <w>xjsr</w><!-- for kotlin-maven-plugin -->
     </words>
   </dictionary>
