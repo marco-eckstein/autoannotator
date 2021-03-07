@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
     <modelVersion>4.0.0</modelVersion>
 
@@ -246,11 +246,11 @@
                                 <configuration>
                                     <target name="ktlint">
                                         <java taskname="ktlint"
-                                              dir="${basedir}"
-                                              fork="true"
-                                              failonerror="true"
-                                              classname="com.pinterest.ktlint.Main"
-                                              classpathref="maven.plugin.classpath">
+                                            dir="${basedir}"
+                                            fork="true"
+                                            failonerror="true"
+                                            classname="com.pinterest.ktlint.Main"
+                                            classpathref="maven.plugin.classpath">
                                             <arg value="--experimental"/>
                                             <arg value="--relative"/>
                                             <arg value="--verbose"/>
@@ -269,11 +269,11 @@
                                 <configuration>
                                     <target name="detekt">
                                         <java taskname="detekt"
-                                              dir="${basedir}"
-                                              fork="true"
-                                              failonerror="true"
-                                              classname="io.gitlab.arturbosch.detekt.cli.Main"
-                                              classpathref="maven.plugin.classpath">
+                                            dir="${basedir}"
+                                            fork="true"
+                                            failonerror="true"
+                                            classname="io.gitlab.arturbosch.detekt.cli.Main"
+                                            classpathref="maven.plugin.classpath">
                                             <arg value="--build-upon-default-config"/>
                                             <arg value="--config"/>
                                             <arg value="${project.basedir}/../detekt-config.yml"/>
