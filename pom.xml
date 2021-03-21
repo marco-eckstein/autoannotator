@@ -54,26 +54,11 @@
         <java.version>1.8</java.version>
         <jdk.version>8</jdk.version>
         <kotlin.version>1.4.0</kotlin.version>
+        <ktlint.version>0.41.0</ktlint.version>
         <detekt.version>1.16.0</detekt.version>
         <dokka.version>0.10.0</dokka.version>
         <slf4j.version>1.7.29</slf4j.version>
         <mainClass>com.marcoeckstein.autoannotator.cli.Main</mainClass>
-        <!--
-        ktlint.disabled_rules:
-            filename:
-                Caught more precisely (with desired exceptions) with detekt.
-            import-ordering:
-                ktlint's order is not supported (yet) by IntelliJ.
-                See:
-                - https://github.com/pinterest/ktlint/issues/527
-                - https://youtrack.jetbrains.com/issue/KT-10974
-            no-wildcard-imports:
-                Not desired. We want them for Java statics and Enum members.
-            experimental:annotation:
-                Not desired.
-            experimental:multiline-if-else:
-                Not desired.
-        -->
         <ktlint.disabled_rules>
             filename,
             import-ordering,
@@ -255,8 +240,6 @@
                                             <arg value="--experimental"/>
                                             <arg value="--relative"/>
                                             <arg value="--verbose"/>
-                                            <arg value="--disabled_rules=${ktlint.disabled_rules}"/>
-                                            <arg value="--editorconfig=${project.basedir}/../.editorconfig"/>
                                         </java>
                                     </target>
                                 </configuration>
@@ -269,7 +252,7 @@
                             <dependency>
                                 <groupId>com.pinterest</groupId>
                                 <artifactId>ktlint</artifactId>
-                                <version>0.35.0</version>
+                                <version>${ktlint.version}</version>
                             </dependency>
                         </dependencies>
                     </plugin>
