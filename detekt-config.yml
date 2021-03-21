@@ -1,6 +1,17 @@
 complexity:
   ComplexMethod:
     ignoreSimpleWhenEntries: true
+exceptions:
+  TooGenericExceptionCaught:
+    exceptionNames:
+      # default minus Exception
+      - ArrayIndexOutOfBoundsException
+      - Error
+      - IllegalMonitorStateException
+      - NullPointerException
+      - IndexOutOfBoundsException
+      - RuntimeException
+      - Throwable
 naming:
   MatchingDeclarationName:
     excludes: "**/*Annotations.kt,**/*Exceptions.kt"
