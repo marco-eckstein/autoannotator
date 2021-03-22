@@ -8,7 +8,7 @@
     <parent>
         <artifactId>autoannotator</artifactId>
         <groupId>com.marcoeckstein</groupId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.3</version>
     </parent>
     <artifactId>autoannotator-cli</artifactId>
 
