@@ -1,0 +1,37 @@
+complexity:
+  ComplexMethod:
+    ignoreSimpleWhenEntries: true
+exceptions:
+  TooGenericExceptionCaught:
+    exceptionNames:
+      # default minus Exception
+      - ArrayIndexOutOfBoundsException
+      - Error
+      - IllegalMonitorStateException
+      - NullPointerException
+      - IndexOutOfBoundsException
+      - RuntimeException
+      - Throwable
+naming:
+  ConstructorParameterNaming:
+    privateParameterPattern: "[_a-z][A-Za-z0-9]*"
+  MatchingDeclarationName:
+    excludes:
+      "**/*Annotations.kt,**/*Delegates.kt,**/*Exceptions.kt,**/*Extensions.kt,**/*Functions.kt,**/Misc.kt"
+  TopLevelPropertyNaming:
+    constantPattern: "[A-Z][A-Za-z0-9]*"
+    propertyPattern: "[A-Za-z][A-Za-z0-9]*"
+    privatePropertyPattern: "_?[A-Za-z][A-Za-z0-9]*"
+performance:
+  SpreadOperator:
+    active: false
+style:
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    # handled by ktlint
+    active: false
+  ReturnCount:
+    max: 3
+  UseIfInsteadOfWhen:
+    active: false

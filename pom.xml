@@ -170,7 +170,7 @@
             <activation>
                 <!-- If project is a module -->
                 <file>
-                    <missing>${basedir}/detekt-config.yml</missing>
+                    <missing>${basedir}/LICENSE.txt</missing>
                 </file>
             </activation>
             <build>
@@ -260,7 +260,9 @@
                                 </goals>
                                 <configuration>
                                     <buildUponDefaultConfig>true</buildUponDefaultConfig>
-                                    <config>${project.basedir}/../detekt-config.yml</config>
+                                    <config>
+                                        ${project.basedir}/../detekt-base.yml,${project.basedir}/../detekt-project.yml
+                                    </config>
                                 </configuration>
                             </execution>
                         </executions>
